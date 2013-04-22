@@ -1,6 +1,79 @@
-*.class
+package ar.edu.untdf.labprog.tp1.ejer1.sol;
 
-# Package Files #
-*.jar
-*.war
-*.ear
+/**
+ *
+ * @author User
+ */
+public abstract class Forma {
+    
+    abstract Conn getConn();
+    
+    public void ingresarSalario(){
+        
+       Conn c = getConn();
+       c.connect();
+       c.query("inserte dentro de la forma cuanto es su salario ");
+    }
+    
+}
+
+
+package ar.edu.untdf.labprog.tp1.ejer1.sol;
+
+/**
+ *
+ * @author User
+ */
+public class FormaMysql extends Forma {
+   
+    
+    @Override
+    Conn getConn(){
+        return  new MysqlConn();
+    }
+
+   
+    
+}
+
+
+
+
+
+package ar.edu.untdf.labprog.tp1.ejer1.sol;
+
+/**
+ *
+ * @author User
+ */
+public class FormaOracle extends Forma {
+   
+    
+    @Override
+    Conn getConn(){        
+        return  new OracleConn();
+    }
+
+}
+
+
+
+
+package ar.edu.untdf.labprog.tp1.ejer1.sol;
+
+/**
+ *
+ * @author User
+ */
+public  class FormaPostgres extends Forma {
+      
+    
+    
+    @Override
+     Conn getConn()    {
+      return  new PostgresConn();
+    }   
+            
+    
+}
+
